@@ -1,9 +1,10 @@
-package hello;
+package com.longhai.batch;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.longhai.model.Transformed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

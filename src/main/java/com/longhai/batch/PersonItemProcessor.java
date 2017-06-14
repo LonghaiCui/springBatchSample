@@ -1,5 +1,7 @@
-package hello;
+package com.longhai.batch;
 
+import com.longhai.model.Person;
+import com.longhai.model.Transformed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;

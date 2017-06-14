@@ -1,5 +1,9 @@
-package hello;
+package com.longhai.config;
 
+import com.longhai.batch.JobCompletionNotificationListener;
+import com.longhai.batch.PersonItemProcessor;
+import com.longhai.model.Transformed;
+import com.longhai.model.Person;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -10,14 +14,9 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
-import org.springframework.batch.item.file.FlatFileItemReader;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.batch.item.file.mapping.DefaultLineMapper;
-import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import javax.sql.DataSource;
@@ -34,22 +33,6 @@ public class BatchConfiguration {
 
     @Autowired
     public DataSource dataSource;
-
-    // tag::readerwriterprocessor[]
-//    @Bean
-//    public FlatFileItemReader<Person> reader() {
-//        FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>();
-//        reader.setResource(new ClassPathResource("sample-data.csv"));
-//        reader.setLineMapper(new DefaultLineMapper<Person>() {{
-//            setLineTokenizer(new DelimitedLineTokenizer() {{
-//                setNames(new String[] { "firstName", "lastName" });
-//            }});
-//            setFieldSetMapper(new BeanWrapperFieldSetMapper<Person>() {{
-//                setTargetType(Person.class);
-//            }});
-//        }});
-//        return reader;
-//    }
 
     @Bean
     ItemReader<Person> reader(DataSource dataSource) {

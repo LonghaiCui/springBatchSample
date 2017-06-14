@@ -1,4 +1,4 @@
-package hello;
+package com.longhai.model;
 
 import java.sql.Date;
 
