@@ -29,10 +29,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
     @Override
     public void afterJob(JobExecution jobExecution) {
-        if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("!!! JOB FINISHED! Time to verify the results");
-
-//            List<Person> results = jdbcTemplate.query("SELECT first_name, last_name FROM people", new RowMapper<Person>() {
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             List<Transformed> results = jdbcTemplate.query("SELECT name, date_created FROM transformed", new RowMapper<Transformed>() {
                 @Override
                 public Transformed mapRow(ResultSet rs, int row) throws SQLException {
@@ -40,10 +37,11 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
                 }
             });
 
-            for (Transformed transformed : results) {
-                log.info("Found <" + transformed + "> in the database.");
-            }
+            log.info("Transformed People Information in the database.");
 
+            results.forEach(result-> {
+                log.info("Full name " + result.getName() + " is created on " + result.getDateCreated());
+            });
         }
     }
 }
