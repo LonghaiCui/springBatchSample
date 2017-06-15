@@ -1,4 +1,5 @@
 DROP TABLE people IF EXISTS;
+DROP TABLE transformed IF EXISTS;
 
 CREATE TABLE people  (
     person_id BIGINT IDENTITY NOT NULL PRIMARY KEY,
@@ -13,14 +14,10 @@ CREATE TABLE transformed (
     date_created DATE
 );
 
--- INSERT INTO people (first_name, last_name) VALUES (:name, :dateCreated);
-
 
 
 insert into people VALUES (1, 'Longhai', 'Cui');
 insert into people VALUES (2, 'Hao', 'Leng');
 insert into people VALUES (3, 'Gulia', 'Vikram');
-
-select first_name, last_name from people;
 
 
