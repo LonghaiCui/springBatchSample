@@ -38,11 +38,13 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
                 }
             });
 
-            log.info("Transformed People Information in the database.");
+            log.info("Checking step1: transformed records in the database");
 
             results.forEach(result-> {
                 log.info("Full name " + result.getName() + " is created on " + result.getDateCreated());
             });
+
+            log.info("Checking step2: final file is written to \\springBatchSample\\build\\resources\\main\\output.txt");
         }
     }
 }
